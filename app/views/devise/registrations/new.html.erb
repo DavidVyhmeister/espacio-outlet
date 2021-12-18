@@ -1,0 +1,59 @@
+<div class="container-fluid bg-secondary">
+<div class="container bg-secondary">
+<h2>Sign up</h2>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= render "devise/shared/error_messages", resource: resource %>
+<table>
+  <tr style="width:30%;">
+    <td class="text-white"><%= f.label :email , :class=>'text-white' %></td>
+    <td><%= f.email_field :email, autofocus: true, autocomplete: "email" %></td>
+  </tr>
+  <tr>
+    <td class="text-white"><%= f.label :password  , :class=>'text-white' %>
+    <% if @minimum_password_length %>
+    <em class="text-white">(<%= @minimum_password_length %> characters minimum)</em>
+    <% end %>
+    </td>
+    <td><%= f.password_field :password, autocomplete: "new-password" %></td>
+  </tr>
+  <tr>
+    <td class="text-white"><%= f.label :password_confirmation , :class=>'text-white' %></td>
+    <td><%= f.password_field :password_confirmation, autocomplete: "new-password" %></td>
+  </tr>
+  <tr>
+    <td class="text-white"><%= f.label :comuna , :class=>'text-white' %></td>
+    <td><%= f.text_field :comuna %></td>
+  </tr>
+  <tr>
+    <td class="text-white"><%= f.label :ciudad , :class=>'text-white' %></td>
+    <td><%= f.text_field :ciudad %></td>
+  </tr>
+  <tr>
+    <td class="text-white"><%= f.label :region , :class=>'text-white' %></td>
+    <td><%= f.text_field :region %></td>
+  </tr>
+  <tr>
+    <td class="text-white"><%= f.label :region , :class=>'text-white' %></td>
+    <td><%= f.collection_select :region, Region.order(:name), :name, :name, include_blank: true %></td>
+  </tr>
+  <tr>
+    <td class="text-white"><%= f.label :provincia , :class=>'text-white' %></td>
+    <td><%= f.grouped_collection_select :ciudad, Region.order(:name), :ciudads, :name, :name, :name, include_blank: true %></td>
+  </tr>
+  <tr>
+    <td class="text-white"><%= f.label :comuna , :class=>'text-white' %></td>
+    <td><%= f.collection_select :comuna, Comuna.order(:name), :name, :name, include_blank: true %></td>
+  </tr>
+
+
+</table>
+<br>
+  <div class="actions">
+    <%= f.submit "Sign up", :class=>"btn btn-warning btn-sm"  %>
+  </div>
+<% end %>
+<br>
+<%= render "devise/shared/links" %>
+<br>
+</div>
